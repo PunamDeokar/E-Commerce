@@ -18,6 +18,7 @@ public class BillGenerateAdmin {
 			System.out.println("--------------------------------------------------------------------");
 			System.out.println("Id   \t Product_Name \t\t\t Total_Amount");
 			System.out.println("--------------------------------------------------------------------");
+			System.out.println();
 			while (rs.next()) {
 				System.out.print(rs.getInt(1));
 				System.out.print("\t" + rs.getString(2));
@@ -25,7 +26,10 @@ public class BillGenerateAdmin {
 				System.out.println();
 				System.out.println("--------------------------------------------------------------------");
 				System.out.println("Total Amount is \t\t\t "+rs.getInt(3));
-		}
+				System.out.println();
+				System.out.println();
+		
+			}
 	} catch (Exception exp) {
 		exp.printStackTrace();
 	}

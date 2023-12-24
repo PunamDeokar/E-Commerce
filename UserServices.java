@@ -12,6 +12,8 @@ import java.util.concurrent.SynchronousQueue;
 public class UserServices extends UserLogIn {
 	static int id =0;
 	UserOperation us = new UserOperation();
+	BillGenerateAdmin bill= new BillGenerateAdmin();
+	static Test_Main main = new Test_Main();
 	public static void getUserOpertion() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("*****************************************");
@@ -23,17 +25,17 @@ public class UserServices extends UserLogIn {
 		System.out.println();
 		
 		System.out.println("Please Select Your Choice   ");	
+		System.out.println();
 		
 		int choice = sc.nextInt();
 		UserLogIn login = new UserLogIn();
 		UserServices us = new UserServices();
 		switch (choice) {
 		case 1	 : us.getUserDetails();
-				 
 				 	break;
 		case 2	:  login.userLogin();
+					//main.main(null);
 		 			break;
-		
 		default :System.out.println("Please Enter the Correct Choice");
 		}
 	}
@@ -144,7 +146,7 @@ public class UserServices extends UserLogIn {
 		PreparedStatement pst=null;
 		Statement st=null;
 		Scanner sc = new Scanner(System.in);
-		int [] addProduct = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+		//int [] addProduct = {1,2,3,4,5,6,7,8,9,10,11,12,13};
 		
 		try {
 			System.out.println("Select Product Id and quatity to add product into cart");
@@ -170,14 +172,14 @@ public class UserServices extends UserLogIn {
 		Scanner sc = new Scanner(System.in);
 		int [] addProduct = {1,2,3,4,5,6,7,8,9,10,11,12,13};
 		try {
-			System.out.println("Your Cart is Empty ");
-			System.out.println();
-			System.out.println("Select Product Id to add product into cart");
+			System.out.println("\t To view Cart ");
+			System.out.println("Select Product Id which you have added into the card");
 			 int id=sc.nextInt();
 			con=DBUtil.getConnection();
 			String query="select id,prod_name,prod_Price from product_list inner join Cart on product_list.id=Cart.Product_id where product_id=?;";
 			pst=con.prepareStatement(query);
 			pst.setInt(1, id);
+			
 			System.out.println();
 			System.out.println("*****************************************");
 			System.out.println("\t*****  CART\t*****");
@@ -189,8 +191,15 @@ public class UserServices extends UserLogIn {
 				System.out.println("Price       > "+rs.getInt(3));
 				System.out.println("*****************************************");
 				System.out.println();
-				System.out.println("Press 1 to confirm your Order ");
 			}	
+			System.out.println("* Press 1 to confirm your Order ");
+			System.out.println("* Press 2 to go Home Page");
+			int choice= sc.nextInt();
+			switch (choice ) {
+			case 1 : bill.CalculateBill();
+			break;
+			case 2 : main.main(null);
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -203,22 +212,7 @@ public class UserServices extends UserLogIn {
 				e.printStackTrace();
 			}
 		}
-	}
 	
-	public void productBill() {
-		Connection con=null;
-		PreparedStatement pst = null;
-		
-		try {
-			con=DBUtil.getConnection();
-			String query="";
-			pst=con.prepareStatement(query);
-			
-			
-			
-			
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+	
 	}
 }

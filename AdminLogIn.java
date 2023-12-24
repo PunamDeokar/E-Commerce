@@ -37,8 +37,6 @@ public class AdminLogIn {
 				Test_Main ts =new Test_Main();
 				UserServices us = new UserServices();
 				BillGenerateAdmin bg= new BillGenerateAdmin();
-				
-				
 				System.out.println("*****************************************");
 				System.out.println("\t 1.Add Product Items ");
 				System.out.println("\t 2.Calculate Bill ");
@@ -49,20 +47,16 @@ public class AdminLogIn {
 				System.out.println("*****************************************");
 				System.out.println();
 				System.out.println("Please Enter your Choice > ");
-				int choice = sc.nextInt();
-				System.out.println("Admin LogIn    >> ");
-				
-				AdminLogIn ad = new AdminLogIn();
+				int choice = sc.nextInt();				
 				switch(choice){
-					case 1:
-							addProductItems();
+					case 1:addProductItems();
 							break;
 					case 2: us.viewItems();
 						bg.CalculateBill();
 						break;
 					case 3:admin.displayEndUserAmount();
 						break;
-					case 4:
+					case 4:admin.checkQuantity();
 						break;
 					case 5:
 						
